@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express')
 const app = express()
-//const config = require('./config/key')
+const config = require('./config/key')
 const { Member } = require('./model/Member')
 //이렇게 써도 무관
 app.use(express.urlencoded({ extended: true }))
@@ -13,7 +13,7 @@ app.use(cookieParser())
 //미들웨어 auth
 const { auth } = require('./middleware/auth')
 
-monoose.connect('mongodb+srv://circlestar:alstn8775*@cmsmongo.07d76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+monoose.connect(config.mongoURI, {
   useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true, useFindAndModify: false
 }).then(() => console.log('몽고 디비 연결됨!'))
   .catch(err => console.log(err))
