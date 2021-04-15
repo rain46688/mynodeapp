@@ -15,9 +15,12 @@ const { auth } = require('./middleware/auth')
 
 console.log("몽고 : "+config.mongoURI);
 monoose.connect("mongodb+srv://circlestar:alstn8775*@cmsmongo.07d76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
-  useUnifiedTopology:true,useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true, useFindAndModify: false
+  useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true, useFindAndModify: false
 }).then(() => console.log('몽고 디비 연결됨!'))
-  .catch(err => console.log(err))
+.catch(error => handleError(error));
+
+  // mongoose.connect(process.env.DATABASE_URL || "mongodb://localhost:27017/mongoDemo_v7", { useNewUrlParser: true }).
+  // catch(error => handleError(error));
 
 // 미들웨어 함수를 특정 경로에 등록
 app.use('/api/data', function(req, res) {
