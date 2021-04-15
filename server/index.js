@@ -13,6 +13,7 @@ app.use(cookieParser())
 //미들웨어 auth
 const { auth } = require('./middleware/auth')
 
+console.log("몽고 : "+config.mongoURI);
 monoose.connect(config.mongoURI, {
   useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true, useFindAndModify: false
 }).then(() => console.log('몽고 디비 연결됨!'))
