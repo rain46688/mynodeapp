@@ -14,8 +14,8 @@ app.use(cookieParser())
 const { auth } = require('./middleware/auth')
 
 console.log("몽고 : "+config.mongoURI);
-monoose.connect(config.mongoURI, {
-  useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true, useFindAndModify: false
+monoose.connect("mongodb+srv://circlestar:alstn8775*@cmsmongo.07d76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+  useUnifiedTopology:true,useNewUrlParser: true, useFindAndModify: true, useCreateIndex: true, useFindAndModify: false
 }).then(() => console.log('몽고 디비 연결됨!'))
   .catch(err => console.log(err))
 
