@@ -2,19 +2,30 @@
   "name": "react_express_heroku",
   "version": "1.0.0",
   "description": "A simple React Express (Node) app that I deployed to Heroku and used in my YouTube video \"Deploying React Express App to Heroku Made Super Simple!\"",
-  "main": "server.js",
+  "main": "./server/index.js",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parse": "^0.1.0",
+    "body-parser": "^1.19.0",
+    "concurrently": "^6.0.2",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^3.23.3",
+    "http-proxy-middleware": "^1.1.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.3",
     "path": "^0.12.7"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
   "scripts": {
+    "backend": "nodemon index.js",
+    "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\"",
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
