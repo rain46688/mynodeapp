@@ -55,6 +55,7 @@ app.post('/api/users/login', (req, res) => {
   //이메일 디비에서 확인
   //몽고디비에서 제공하는 findOne 함수를 이용해서 찾기
   //req.body.email는 넘어오는 리퀘스트에 email 값
+  console.log("아이디 : "+req.body.memberId);
   Member.findOne({ memberId: req.body.memberId }, (err, userInfo) => {
     //userInfo가 없으면 로그인 실패라고 표시해줌
     console.log("userInfo : " + userInfo)
@@ -100,7 +101,7 @@ app.get('/api/users/logout', auth, (req, res) => {
 
   console.log("req.user._id : " + req.user._id)
   //몽고 디비에서 제공하는 함수
-  Member.findOneAndDelete({ _id: req.user._id }, { token: "" }, (err, user) => {
+  Member.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
     if (err) return res.json({ success: false, err })
     return res.status(200).send({
       success: true,
