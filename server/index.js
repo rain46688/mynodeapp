@@ -27,6 +27,10 @@ app.use('/api/data', function(req, res) {
   res.json({ greeting: 'Hello cms World' });
 });
 
+app.get('/api/hello', (req,res) =>{
+  res.send('서버에서 보낸 메세지')
+})
+
 //회원 추가하기
 app.post('/api/users/register', (req, res) => {
   //회원 가입 필요한 정보들을 client에서 가져오면 그것을 DB에 넣어준다.
@@ -51,7 +55,7 @@ app.post('/api/users/login', (req, res) => {
   //이메일 디비에서 확인
   //몽고디비에서 제공하는 findOne 함수를 이용해서 찾기
   //req.body.email는 넘어오는 리퀘스트에 email 값
-  Member.findOne({ email: req.body.email }, (err, userInfo) => {
+  Member.findOne({ memberId: req.body.memberId }, (err, userInfo) => {
     //userInfo가 없으면 로그인 실패라고 표시해줌
     console.log("userInfo : " + userInfo)
     //userInfo 값에는 몽고디비에서 해당 이메일에 맞는 값들을 가져와줌 role,id,name,email 등등
