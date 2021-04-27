@@ -16,12 +16,13 @@ export default function (SpecificComponent, option, adminRoute = null){
 
         useEffect(() => {
             dispatch(auth()).then(response =>{
+                console.log("여기 실행")
                 console.log(response)
                 
                 //분기 처리
 
                 //로그인 하지 않은 상태
-                if(!response.payload.isAuth){
+                if(!response.payload.isLogined){
                     if(option){
                         props.history.push('/login')
                         //로그인하고 오라고 보내버리기

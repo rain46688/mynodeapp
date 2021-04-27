@@ -30,7 +30,7 @@ return{
 
 export function auth(){
     //dataToSubmit은 get에선 필요없음
-    const request =  axios.get('/api/users/auth').then(response => 
+    const request =  axios.get('/api/users/mem').then(response => 
         response.data
     )
     //reducer로 넘기기

@@ -15,7 +15,7 @@ let auth = (req, res, next) => {
         //유저가 있으면 인증됨
         //유저가 없으면 인증 안됨
         if (err) res.status(200).send(err);
-        if (!user) return res.json({ isAuth: false, error: true });
+        if (!user) return res.json({ isLogined: false, error: true });
 
         //index.js에서 req로 사용하기 위해서 token 이랑 user를 넣는것
         req.token = token;

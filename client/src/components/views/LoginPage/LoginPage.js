@@ -27,7 +27,7 @@ function LoginPage(props) {
     const onSubmitHandler = (event) =>{
         event.preventDefault();//새로고침 안되게 만들기
 
-        console.log('이메일 : ',MemberId);
+        console.log('아이디 : ',MemberId);
         console.log('비번 : ',Password);
 
         let body = {

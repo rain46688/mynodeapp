@@ -1,37 +1,61 @@
-import React,{useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
+import './MainPage.css';
 
 function MainPage(props) {
 
-    useEffect(() => {
-        axios.get('/api/hello')
-        .then(response => console.log(response.data))
-    }, [])
+    const [logined, setLogined] = useState([]);
 
-    const onClickLogoutHandler = () =>{
-        //여긴 redux를 사용하지않고 그냥 axios를 들어가서씀 ajax랑 비슷
-        axios.get(`/api/users/logout`).then(
+    function checkLogin(){
+        axios
+        .get('/api/users/mem')
+      .then(({ data }) => setLogined(data));
+    }
+
+    useEffect(() => {
+        checkLogin();
+      }, []);
+
+    const dologin = (e) => {
+        console.log("Do Login");
+        props.history.push('/login')
+    }
+
+    const dologout = (e) => {
+        console.log("Do Logout");
+          axios.get('/api/users/logout').then(
             response => {
-                console.log(response.data)
+                console.log("로그아웃 : "+response.data.success);
                 if(response.data.success){
-                    props.history.push('/login')
+                    checkLogin();
                 }else{
-                    alert('로그아웃 실패')
+                    alert('Logout Error!!')
                 }
             }
         )
     }
 
-    return (
-        <div style={{display:'flex', justifyContent : 'center', alignItems: 'center', width:'100%', height:'100vh'}}>
-            <div style={{display:'flex', flexDirection:'column'}}>
-                <h2>시작 페이지</h2>
-                <button onClick={onClickLogoutHandler}>로그아웃</button>
+    if(logined.isLogined === false){
+        return (
+            <div id='main'>
+                <div id='main2'>
+                    로그인 안되있음
+                    <button onClick={dologin}>Login</button>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }else{
+        return (
+            <div id='main'>
+                <div id='main2'>
+                    로그인 되있음
+                    <button onClick={dologout}>Logout</button>
+                </div>
+            </div>
+        )
+    }
+      
 }
 
 export default withRouter(MainPage)
- 

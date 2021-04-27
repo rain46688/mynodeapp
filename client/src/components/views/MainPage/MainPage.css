@@ -1,0 +1,12 @@
+#main{
+    display:flex;
+    justify-Content : center;
+    align-Items: center;
+    width:100%;
+    height:100vh;
+}
+
+#main2{
+    display:flex; 
+    flex-Direction:column;
+}

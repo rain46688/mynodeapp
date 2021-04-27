@@ -111,13 +111,13 @@ app.get('/api/users/logout', auth, (req, res) => {
 })
 
 //auth 미들웨어이다.
-app.get('/api/users/auth', auth, (req, res) => {
+app.get('/api/users/mem', auth, (req, res) => {
   console.log("미들웨어 지나서 메소드 실행됨");
   //여기까지 미들웨어를 통과해왔다는것은 
   //authentication 이 true라는 말
   res.status(200).json({
     _id: req.user._id,
-    isAuth: true,
+    isLogined: true,
     memberId: req.user.memberId,
     token: req.user.token
   })
