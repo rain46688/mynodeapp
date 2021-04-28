@@ -2,60 +2,24 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import './MainPage.css';
+import HeaderPage from '../Header/HeaderPage';
+import FooterPage from '../Footer/FooterPage';
+
+import { Layout, Menu } from 'antd';
+
+const { Header, Content, Footer } = Layout;
 
 function MainPage(props) {
 
-    const [logined, setLogined] = useState([]);
-
-    function checkLogin(){
-        axios
-        .get('/api/users/mem')
-      .then(({ data }) => setLogined(data));
-    }
-
-    useEffect(() => {
-        checkLogin();
-      }, []);
-
-    const dologin = (e) => {
-        console.log("Do Login");
-        props.history.push('/login')
-    }
-
-    const dologout = (e) => {
-        console.log("Do Logout");
-          axios.get('/api/users/logout').then(
-            response => {
-                console.log("로그아웃 : "+response.data.success);
-                if(response.data.success){
-                    checkLogin();
-                }else{
-                    alert('Logout Error!!')
-                }
-            }
-        )
-    }
-
-    if(logined.isLogined === false){
-        return (
-            <div id='main'>
-                <div id='main2'>
-                    로그인 안되있음
-                    <button onClick={dologin}>Login</button>
-                </div>
-            </div>
-        )
-    }else{
-        return (
-            <div id='main'>
-                <div id='main2'>
-                    로그인 되있음
-                    <button onClick={dologout}>Logout</button>
-                </div>
-            </div>
-        )
-    }
-      
+    return (
+        <Layout className="layout">
+            <HeaderPage/>
+            <Content style={{ textAlign: 'center', padding: '0 50px',fontSize:'50px' }}>
+                <div className="site-layout-content">컨텐츠</div>
+            </Content>
+            <FooterPage/>
+        </Layout>
+    )
 }
 
 export default withRouter(MainPage)
