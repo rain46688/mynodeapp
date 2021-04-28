@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 //임포트로 각각 페이지 맵핑값에 맞는 js 가져오기
 import MainPage from './components/views/MainPage/MainPage'
-import LoginPage from './components/views/LoginPage/LoginPage'
+import LoginPage from './components/views/LoginPage/LoginPage2'
 //auth 사용하기 
 import Auth from './hoc/auth'
 

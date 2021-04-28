@@ -8,7 +8,7 @@ const { Footer } = Layout;
 function FooterPage(props) {
 
     return (
-        <Footer style={{ textAlign: 'center',fontSize:'50px',backgroundColor:'gray' }}>푸터</Footer>
+        <Footer style={{ textAlign: 'center',fontSize:'50px',backgroundColor:'gray' }}>Footer</Footer>
     )
 
 }

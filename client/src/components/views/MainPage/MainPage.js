@@ -15,7 +15,7 @@ function MainPage(props) {
         <Layout className="layout">
             <HeaderPage/>
             <Content style={{ textAlign: 'center', padding: '0 50px',fontSize:'50px' }}>
-                <div className="site-layout-content">컨텐츠</div>
+                <div className="site-layout-content">Content</div>
             </Content>
             <FooterPage/>
         </Layout>
