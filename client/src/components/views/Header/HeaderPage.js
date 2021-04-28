@@ -54,7 +54,7 @@ function HeaderPage(props) {
                     <Menu.Item key="2">메뉴 2</Menu.Item>
                     <Menu.Item key="3">메뉴 3</Menu.Item>
                     <Menu.Item onClick={dologout} style={{ float: 'right' }} key="4">로그아웃</Menu.Item>
-                    <label style={{ float: 'right' }}>'{logined.memberId}' 님 접속</label>
+                    <label style={{ float: 'right' ,paddingRight:'2vh' }}>' {logined.memberId} ' 님 접속</label>
                 </Menu>
             </Header>
         )

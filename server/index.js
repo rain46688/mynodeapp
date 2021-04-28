@@ -55,7 +55,15 @@ app.post('/api/users/login', (req, res) => {
   //이메일 디비에서 확인
   //몽고디비에서 제공하는 findOne 함수를 이용해서 찾기
   //req.body.email는 넘어오는 리퀘스트에 email 값
-  console.log("아이디 : "+req.body.memberId);
+  console.log("값 : "+req.body.remember);
+
+  if(req.body.remember){
+    console.log("아이디 저장");
+    res.cookie("id", req.body.memberId);
+  }else{
+    res.cookie("id", "");
+  }
+
   Member.findOne({ memberId: req.body.memberId }, (err, userInfo) => {
     //userInfo가 없으면 로그인 실패라고 표시해줌
     console.log("userInfo : " + userInfo)

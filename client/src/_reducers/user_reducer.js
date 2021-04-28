@@ -8,14 +8,18 @@ export default function (state = {}, action){
         case LOGIN_USER:
             //...state 이건 스프레드 오퍼레이터로 그냥 위에서 객체를 똑같이 가져온다는걸 의미한다함
             //action.payload이건 user_action.js에서 보낸 payload
-            return{...state, loginSuccess:action.payload}
+            console.log("LOGIN_USER user_reducer 함수 실행");
+            console.log(action.payload);
+            return{...state, ReducerloginSuccess:action.payload}
             break;
             
         case REGISTER_USER:
+            console.log("REGISTER_USER user_reducer 함수 실행");
             return{...state, registerSuccess:action.payload}
             break;
 
         case ATUH_USER:
+            console.log("ATUH_USER user_reducer 함수 실행");
             return{...state, userData:action.payload}
             break;
 

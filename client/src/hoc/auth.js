@@ -16,7 +16,7 @@ export default function (SpecificComponent, option, adminRoute = null){
 
         useEffect(() => {
             dispatch(auth()).then(response =>{
-                console.log("여기 실행")
+                console.log("auth.js 실행")
                 console.log(response)
                 
                 //분기 처리
