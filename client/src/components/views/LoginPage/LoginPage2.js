@@ -57,17 +57,28 @@ function LoginPage(props) {
         props.history.push('/')
     }
 
+    //Form에 쿠키에 가져온값 기본으로 넣기
+    //https://stackoverflow.com/questions/62855272/setting-the-default-value-inside-the-input-field-in-the-antd-library-after-calli
+    //참고했음 input에 defaultValue로 넣기하면 required가 false가 되서 자꾸 아이디 입력하라뜸..
+    const [form] = Form.useForm();
+
+    React.useEffect(() => {
+        form.setFieldsValue({
+            memberId: cookies.id,
+        });
+      }, []);
+
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100vh' }}>
             <Form {...layout} name="basic" initialValues={{ remember: true }} style={{ border: '1px solid gray', padding: '4vh' }}
-                onFinish={onFinish} onFinishFailed={onFinishFailed}>
+                onFinish={onFinish} onFinishFailed={onFinishFailed} form={form}>
 
                 <Form.Item label="ID" name="memberId"
                     rules={[{
                             required: true,
                             message: '아이디를 입력하세요!',
                         },]}>
-                    <Input defaultValue={cookies.id}/>
+                    <Input />
                 </Form.Item>
 
                 <Form.Item label="Password" name="password"
