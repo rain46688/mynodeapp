@@ -1,8 +1,3 @@
-
-Content{
-    text-align: center;
-    padding : 0 50px;
-    font-size: 50px;
-    width:100%;
-    height:100%;
+.layout{
+    height: 100vh;
 }

@@ -16,9 +16,7 @@ function MainPage(props) {
         <Layout className="layout">
             <HeaderPage/>
             <Content>
-                <div className="site-layout-content">
                 <VideoPage/>
-                </div>
             </Content>
             <FooterPage/>
         </Layout>
