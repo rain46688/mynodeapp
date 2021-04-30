@@ -11,15 +11,7 @@ function VideoPage(props) {
             <div id="video1">
                     <ReactPlayer
                         className='react-player'
-                        url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
-                        width='100%'
-                        height='100%'
-                        controls='true'/>
-            </div>
-            <div id="video1">
-                    <ReactPlayer
-                        className='react-player'
-                        url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
+                        url='https://drive.google.com/file/d/1J8rVokbO6NsgmA-mj9QkS7jSHSLNs_Ne/view?usp=sharing'
                         width='100%'
                         height='100%'
                         controls='true'/>
