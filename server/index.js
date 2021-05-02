@@ -22,6 +22,56 @@ monoose.connect(config.mongoURI, {
   // mongoose.connect(process.env.DATABASE_URL || "mongodb://localhost:27017/mongoDemo_v7", { useNewUrlParser: true }).
   // catch(error => handleError(error));
 
+
+  const fs = require('fs');
+  //https://www.youtube.com/watch?v=1y0-IfRW114
+  const { google } = require('googleapis');
+  //Authorization code : 4/0AY0e-g4Bk4TSajIh4lbyKWQppZWMxohKKkNc0Z05_cIMPxQCBMaWv_W-PGPIz_1q2_1riQ
+  //Access token: ya29.a0AfH6SMAyZFlMd0JKaZr_GijzwX62EzU8fqEuuIgf4YUsauXZHbh_v236kE6o-l11t1AlUxjMu-Pt63J0oOsVHNIhJOjXTiOKDXOoDeUrYqZvq9WUZXxvcaWNI4zSVj_q3WGmO1tuaaTN1OqB1VFsoF6EIThX
+  const CLIENT_ID = '25687515677-g8530d90ejo35p9orem1chcv490l6dhk.apps.googleusercontent.com';
+  const CLIENT_SECRET = 'CYnUu7p3ZExPBmTsS5NTdCe3';
+  const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
+  const REFRESH_TOKEN = '1//04xIHyIXnrO8MCgYIARAAGAQSNwF-L9IrIks9TjnooXjMwe85aQ7s8kwKeSN21Zgi3sLYWdyWOAekcIEE4zWft1LsLwzkRBdSKZ4';
+  
+  const oauth2Client = new google.auth.OAuth2(
+      CLIENT_ID,
+      CLIENT_SECRET,
+      REDIRECT_URI
+  );
+  
+  oauth2Client.setCredentials({refresh_token : REFRESH_TOKEN});
+  
+  const drive = google.drive({
+      version : 'v3',
+      auth:oauth2Client
+  });
+  
+  const filePath = path.join(__dirname,'x.jpg');
+  
+// 미들웨어 함수를 특정 경로에 등록
+app.use('/api/upload', function(req, res) {
+    try{
+      const response = drive.files.create({
+          requestBody:{
+              name : 'gg.jpg',
+              mimeType:'image/jpg'
+          },
+          media:{
+              mimeType:'image/jpg',
+              body:fs.createReadStream(filePath)
+          }
+      })
+      return res.status(200).json({//200은 성공을 의미
+        upload: true
+      })
+  }catch(error){
+      console.log(error.message);
+      return res.json({ upload: false, error:error })
+  }
+});
+
+
+
 // 미들웨어 함수를 특정 경로에 등록
 app.use('/api/data', function(req, res) {
   res.json({ greeting: 'Hello cms World' });
