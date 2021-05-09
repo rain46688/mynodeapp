@@ -54,7 +54,7 @@ app.use('/api/upload', function(req, res) {
       const response = drive.files.create({
           requestBody:{
               name : 'gg.jpg',
-              mimeType:'image/jpg'
+              mimeType:'image/jpg',
           },
           media:{
               mimeType:'image/jpg',
